@@ -2,8 +2,19 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+//靜態路由
 app.get("/", (req, res) => {
-  res.send("express app for movies!");
+  res.redirect("/movies");
+});
+
+app.get("/movies", (req, res) => {
+  res.send("listing movies");
+});
+
+//動態路由
+app.get("/movie/:id", (req, res) => {
+  const id = req.params.id;
+  res.send(`read movie : ${id}`);
 });
 
 app.listen(port, () => {
