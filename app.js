@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+app.use(express.static("public"));
+
 //靜態路由
 app.get("/", (req, res) => {
   res.redirect("/movies");
