@@ -1,7 +1,11 @@
 const express = require("express");
+const { engine } = require("express-handlebars");
 const app = express();
 const port = 3000;
 
+app.engine(".hbs", engine({ extname: ".hbs" }));
+app.set("view engine", ".hbs");
+app.set("views", "./views");
 app.use(express.static("public"));
 
 //靜態路由
@@ -10,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/movies", (req, res) => {
-  res.send("listing movies");
+  res.render("index");
 });
 
 //動態路由
