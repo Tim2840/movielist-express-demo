@@ -15,14 +15,16 @@ app.get("/", (req, res) => {
   res.redirect("/movies");
 });
 
+//動態路由
 app.get("/movies", (req, res) => {
   res.render("index", { movies, BASE_IMG_URL });
 });
 
-//動態路由
 app.get("/movie/:id", (req, res) => {
-  const id = req.params.id;
-  res.send(`read movie : ${id}`);
+  const id = req.params.id
+  const movie = movies.find((mv) => mv.id.toString() === id
+  )
+  res.render("detail", { movie, BASE_IMG_URL });
 });
 
 app.listen(port, () => {
